@@ -1,4 +1,7 @@
 package br.edu.ifsul.ctsi.lpoo_obj6.consulta;
 
-public class ConsultaRepository {
+import br.edu.ifsul.ctsi.lpoo_obj6.secretaria.Secretaria;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ConsultaRepository extends JpaRepository<Consulta,Long> {
 }

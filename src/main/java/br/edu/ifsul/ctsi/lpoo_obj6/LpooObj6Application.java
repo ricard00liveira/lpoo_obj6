@@ -8,6 +8,7 @@ public class LpooObj6Application {
 
     public static void main(String[] args) {
         SpringApplication.run(LpooObj6Application.class, args);
+        ClinicaController.main(null);
     }
 
 }
