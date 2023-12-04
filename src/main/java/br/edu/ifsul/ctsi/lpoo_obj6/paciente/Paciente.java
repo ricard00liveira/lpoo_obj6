@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.util.List;
 
 
@@ -14,6 +16,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +26,14 @@ public class Paciente {
     private String usuario;
     @OneToMany(mappedBy = "paciente")
     private List<Consulta> consultas;
+
+    @Override
+    public String toString() {
+        return "Paciente\n{" +
+                "id=" + id +
+                ", nomePcnte='" + nomePcnte + '\'' +
+                ", senha=" + senha +
+                ", usuario='" + usuario + '\'' +
+                "}\n";
+    }
 }
