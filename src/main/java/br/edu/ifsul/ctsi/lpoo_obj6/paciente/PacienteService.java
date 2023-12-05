@@ -30,4 +30,21 @@ public class PacienteService {
         }
         return null;
     }
+
+    public Paciente update(Paciente paciente) {
+        Assert.notNull(paciente.getId(),"Não foi possível atualizar o registro");
+
+        Optional<Paciente> optional = rep.findById(paciente.getId());
+        if(optional.isPresent()) {
+            Paciente db = optional.get();
+            db.setNomePcnte(paciente.getNomePcnte());
+            db.setUsuario(paciente.getUsuario());
+            db.setSenha(paciente.getSenha());
+            rep.save(db);
+
+            return db;
+        } else {
+            return null;
+        }
+    }
 }

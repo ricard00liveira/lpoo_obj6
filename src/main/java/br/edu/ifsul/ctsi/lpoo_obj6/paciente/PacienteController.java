@@ -17,13 +17,14 @@ public class PacienteController {
     public static void main(String[] args) {
         int opcao;
         do {
-            System.out.print("\n\"-------  MENU PACIENTE -------\"");
+            System.out.print("\n-------  MENU PACIENTE -------");
             System.out.print(
                     """
                                 
                             1. Cadastrar paciente
                             2. Visualizar pacientes
                             3. Excluir paciente
+                            4. Alterar paciente
 
                             Opção (Zero p/sair):\s""");
             opcao = input.nextInt();
@@ -32,6 +33,7 @@ public class PacienteController {
                 case 1 -> inserir();
                 case 2 -> visualizar();
                 case 3 -> excluir();
+                case 4 -> alterar();
                 default -> {
                     if (opcao != 0) System.out.println("Opção inválida.");
                 }
@@ -53,7 +55,11 @@ public class PacienteController {
         System.out.println("\n++++++ Visualizar pacientes ++++++");
         List<Paciente> resultado = pacienteService.getPacientes();
         System.out.println("\nLista dos pacientes cadastrados:\n");
-        System.out.println(resultado);
+        if(resultado.isEmpty()) {
+            System.out.println("Nenhum paciente cadastrado.");
+        } else {
+            System.out.println(resultado);
+        }
     }
     public static void excluir(){
         System.out.println("\n++++++ Excluir paciente ++++++");
@@ -83,6 +89,55 @@ public class PacienteController {
             }
         } while (opcao != 0);
     }
+
+    private static void alterar() {
+        Paciente pac;
+        int opcao = 0;
+        do {
+            System.out.println("\n++++++ Alterar um cliente ++++++");
+            System.out.print("\nDigite o código do cliente (Zero p/sair): ");
+            long codigo = input.nextLong();
+            input.nextLine();
+            if (codigo == 0) {
+                opcao = 0;
+            } else {
+                pac = pacienteService.getPacienteById(codigo);
+                if (pac == null) {
+                    System.out.println("Código inválido.");
+                } else {
+                    System.out.println("Nome: " + pac.getNomePcnte());
+                    System.out.print("Alterar? (1-sim/0-não) ");
+                    if(input.nextInt() == 1){
+                        input.nextLine();
+                        System.out.println("Digite o novo nome do paciente: ");
+                        pac.setNomePcnte(input.nextLine());
+                    }
+                    System.out.println("Usuário: " + pac.getUsuario());
+                    System.out.print("Alterar? (1-sim/0-não) ");
+                    if(input.nextInt() == 1){
+                        input.nextLine();
+                        System.out.print("Digite o novo Usuário do paciente: ");
+                        pac.setUsuario(input.nextLine());
+                    }
+                    System.out.println("Senha: " + pac.getSenha());
+                    System.out.print("Alterar? (1-sim/0-não) ");
+                    if(input.nextInt() == 1){
+                        input.nextLine();
+                        System.out.print("Digite a nova senha do paciente: ");
+                        pac.setSenha(Integer.valueOf(input.nextLine()));
+                    }
+
+                    if(pacienteService.update(pac) != null) {
+                        System.out.println("Paciente atualizado com sucesso. \n" + pacienteService.getPacienteById(pac.getId()));
+                    } else {
+                        System.out.println("Não foi possível atualizar este cliente. Por favor, contate o administrador.");
+                    }
+                    opcao = 1;
+                }
+            }
+        } while (opcao != 0);
+    }
+
 }
 
 

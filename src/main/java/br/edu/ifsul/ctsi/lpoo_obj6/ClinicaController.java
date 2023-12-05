@@ -13,7 +13,7 @@ public class ClinicaController {
 
         int opcao;
         do {
-            System.out.print("\n-------  CLINÍCA DENTISTA -------\n");
+            System.out.print("\n-------  CLINÍCA DENTISTA -------");
             System.out.print("\nSelecione sua opção: \n");
             System.out.print(
                     """
