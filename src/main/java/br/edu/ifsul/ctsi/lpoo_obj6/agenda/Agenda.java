@@ -27,7 +27,7 @@ public class Agenda {
         int hora = data.get(Calendar.HOUR_OF_DAY);
         int minuto = data.get(Calendar.MINUTE);
 
-        return String.format("\nAgenda { Data=%02d/%02d/%d -> Hora: %02d:%02d }", dia, mes, ano, hora, minuto,nomePcnt);
+        return String.format("\nAgenda { Data=%02d/%02d/%d -> Hora: %02d:%02d }", dia, mes, ano, hora, minuto);
     }
 }
 
