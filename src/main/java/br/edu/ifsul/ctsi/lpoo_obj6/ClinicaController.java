@@ -1,5 +1,6 @@
 package br.edu.ifsul.ctsi.lpoo_obj6;
 
+import br.edu.ifsul.ctsi.lpoo_obj6.agenda.AgendaController;
 import br.edu.ifsul.ctsi.lpoo_obj6.consulta.ConsultaController;
 import br.edu.ifsul.ctsi.lpoo_obj6.paciente.PacienteController;
 import br.edu.ifsul.ctsi.lpoo_obj6.secretaria.SecretariaController;
@@ -20,6 +21,7 @@ public class ClinicaController {
                         1. Paciente
                         2. Secretária
                         3. Consultas
+                        4. Agenda
                         Opção (Zero p/sair):\s""");
             opcao = input.nextInt();
             input.nextLine();
@@ -27,6 +29,7 @@ public class ClinicaController {
                 case 1 -> PacienteController.main(null);
                 case 2 -> SecretariaController.main(null);
                 case 3 -> ConsultaController.main(null);
+                case 4 -> AgendaController.main(null);
                 default -> {
                     if (opcao != 0) System.out.println("Opção inválida.");
                 }
