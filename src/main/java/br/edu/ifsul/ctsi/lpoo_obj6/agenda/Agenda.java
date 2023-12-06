@@ -21,10 +21,13 @@ public class Agenda {
 
     @Override
     public String toString() {
-        return "\nAgenda { " +
-                "Data=" + data.get(Calendar.DAY_OF_MONTH) + "/" +
-                data.get(Calendar.MONTH) + "/" + data.get(Calendar.YEAR) + " -> Hora: " +
-                data.get(Calendar.HOUR_OF_DAY) + ":" + data.get(Calendar.MINUTE) + " }";
+        int ano = data.get(Calendar.YEAR);
+        int mes = data.get(Calendar.MONTH) + 1;
+        int dia = data.get(Calendar.DAY_OF_MONTH);
+        int hora = data.get(Calendar.HOUR_OF_DAY);
+        int minuto = data.get(Calendar.MINUTE);
+
+        return String.format("\nAgenda { Data=%02d/%02d/%d -> Hora: %02d:%02d }", dia, mes, ano, hora, minuto,nomePcnt);
     }
 }
 

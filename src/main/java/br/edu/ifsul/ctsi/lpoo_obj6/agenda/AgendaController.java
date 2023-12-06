@@ -1,7 +1,5 @@
 package br.edu.ifsul.ctsi.lpoo_obj6.agenda;
 
-import br.edu.ifsul.ctsi.lpoo_obj6.paciente.Paciente;
-import br.edu.ifsul.ctsi.lpoo_obj6.paciente.PacienteService;
 import org.springframework.stereotype.Controller;
 
 import java.util.Calendar;
@@ -55,7 +53,7 @@ public class AgendaController {
         System.out.print("Digite os minutos (MM): \n");
         int mm = Integer.parseInt(input.nextLine());
         Calendar calendar = Calendar.getInstance();
-        calendar.set(ano,mes,dia,hh,mm,00);
+        calendar.set(ano,mes-1,dia,hh,mm,0);
         agenda.setData(calendar);
         System.out.println("Horário cadastrado com sucesso:" + agendaService.insert(agenda));
     }
