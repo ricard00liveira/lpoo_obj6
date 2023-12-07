@@ -25,6 +25,7 @@ public class PacienteController {
                             2. Visualizar pacientes
                             3. Excluir paciente
                             4. Alterar paciente
+                            5. Buscar paciente p/ nome
 
                             Opção (Zero p/sair):\s""");
             opcao = input.nextInt();
@@ -34,11 +35,18 @@ public class PacienteController {
                 case 2 -> visualizar();
                 case 3 -> excluir();
                 case 4 -> alterar();
+                case 5-> buscarNome();
                 default -> {
                     if (opcao != 0) System.out.println("Opção inválida.");
                 }
             }
         } while (opcao != 0);
+    }
+
+    private static void buscarNome() {
+        System.out.println("\n++++++ Buscar Paciente p/ nome ++++++");
+        System.out.print("Digite o nome do paciente: ");
+        System.out.println(pacienteService.buscarNome(input.nextLine()));
     }
 
     public static void inserir() {

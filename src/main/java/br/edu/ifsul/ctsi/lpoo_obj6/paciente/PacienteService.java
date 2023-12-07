@@ -47,4 +47,8 @@ public class PacienteService {
             return null;
         }
     }
+
+    public List<Paciente> buscarNome(String s) {
+        return rep.findPacienteByNomePcnte(s+"%");
+    }
 }

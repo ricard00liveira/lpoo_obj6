@@ -2,6 +2,9 @@ package br.edu.ifsul.ctsi.lpoo_obj6.agenda;
 
 import org.springframework.stereotype.Controller;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
@@ -29,7 +32,7 @@ public class AgendaController {
             input.nextLine();
             switch (opcao) {
                 case 1 -> inserir();
-              //  case 2 -> alterar();
+                case 2 -> alterar();
               //  case 3 -> excluir();
                 case 4 -> visualizar();
                 default -> {
@@ -38,23 +41,18 @@ public class AgendaController {
             }
         } while (opcao != 0);
     }
+    public static void alterar(){
+        System.out.println("\n++++++ Alterar horário ++++++");
+        System.out.print("Informe a data (dd/MM/yyyy): ");
+        LocalDate data = LocalDate.parse(input.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        System.out.println(agendaService.getAgendaByData(data));
+    }
     public static void inserir() {
         Agenda agenda = new Agenda();
         System.out.println("\n++++++ Cadastro de novo horário ++++++");
-        System.out.print("Informe a data... \n");
-        System.out.print("Digite o DIA: \n");
-        int dia = Integer.parseInt(input.nextLine());
-        System.out.print("Digite o MÊS: \n");
-        int mes = Integer.parseInt(input.nextLine());
-        System.out.print("Digite o ANO: \n");
-        int ano = Integer.parseInt(input.nextLine());
-        System.out.print("Digite as horas (HH): \n");
-        int hh = Integer.parseInt(input.nextLine());
-        System.out.print("Digite os minutos (MM): \n");
-        int mm = Integer.parseInt(input.nextLine());
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(ano,mes-1,dia,hh,mm,0);
-        agenda.setData(calendar);
+        System.out.print("Informe a data e hora dd/MM/yyyy HH:mm... \n");
+        LocalDateTime data = LocalDateTime.parse(input.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+        agenda.setData(data);
         System.out.println("Horário cadastrado com sucesso:" + agendaService.insert(agenda));
     }
 
